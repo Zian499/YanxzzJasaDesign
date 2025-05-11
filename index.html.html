@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>YanxzDesign.com</title>
+<style>
+  /* Reset */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    color: #eee;
+    min-height: 100vh;
+  }
+  a {
+    color: #4fc3f7;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Navbar */
+  nav {
+    position: fixed;
+    top: 0; right: 0; left: 0;
+    background: rgba(12,12,12,0.85);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.6);
+    z-index: 1000;
+  }
+  .nav-left {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .site-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #4fc3f7;
+    user-select: none;
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+  }
+  nav li {
+    display: inline;
+  }
+  nav a {
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+    color: #eee;
+    font-weight: 600;
+  }
+  nav a:hover {
+    transform: scale(1.15);
+    color: #82cfee;
+  }
+
+  /* Hero Section */
+  .hero {
+    position: relative;
+    background-image: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1470&q=80');
+    background-size: cover;
+    background-position: center;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1.5rem;
+    text-align: center;
+    color: #fff;
+  }
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+  }
+  .hero-content {
+    position: relative;
+    max-width: 700px;
+    z-index: 1;
+  }
+  .hero-content h1 {
+    font-size: 3.2rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 10px rgb(0 0 0 / 0.7);
+  }
+  .hero-content p {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    font-weight: 400;
+    text-shadow: 0 0 8px rgb(0 0 0 / 0.6);
+  }
+  .hero-content .btn {
+    background-color: #4fc3f7;
+    color: #000;
+    padding: 0.9rem 2.5rem;
+    border-radius: 30px;
+    border: none;
+    font-weight: 700;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 6px 15px rgba(79,195,247,0.7);
+    user-select: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .hero-content .btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 9px 20px rgba(79,195,247,1);
+  }
+
+  /* Section base */
+  section {
+    max-width: 900px;
+    margin: 3rem auto;
+    padding: 0 1rem;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #4fc3f7;
+    text-align: center;
+  }
+
+  /* Products grid */
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+    gap: 1.8rem;
+  }
+  .product-card {
+    background: #1f2a35;
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgb(0 0 0 / 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: default;
+  }
+  .product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 7px 22px rgb(79 195 247 / 0.8);
+  }
+  .product-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: #82cfee;
+  }
+  .product-card p {
+    flex-grow: 1;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: #cccccc;
+  }
+  .price {
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: #3af014;
+    margin-bottom: 1rem;
+  }
+  .product-card button {
+    background-color: #4fc3f7;
+    color: black;
+    border: none;
+    border-radius: 22px;
+    padding: 0.7rem 1.8rem;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .product-card button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 22px rgba(79,195,247,0.9);
+  }
+
+  /* About and Contact */
+  p.lead {
+    font-size: 1.2rem;
+    text-align: center;
+    line-height: 1.6;
+    max-width: 650px;
+    margin: 0 auto;
+    color: #ccc;
+  }
+  .contact-info {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    color: #8ecdf7;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .hero-content h1 {
+      font-size: 2.2rem;
+    }
+    .hero-content p {
+      font-size: 1rem;
+    }
+    section {
+      margin: 2rem 0 3rem;
+    }
+    nav ul {
+      gap: 1rem;
+    }
+    .site-title {
+      font-size: 1rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-left">
+    <!-- Inline SVG logo -->
+    <svg width="36" height="36" viewBox="0 0 64 64" fill="none" xmlns="" aria-hidden="true" focusable="false">
+      <circle cx="32" cy="32" r="30" stroke="#4fc3f7" stroke-width="4"/>
+      <path d="M20 44L44 20" stroke="#4fc3f7" stroke-width="4" stroke-linecap="round"/>
+      <path d="M20 20H44V44" stroke="#4fc3f7" stroke-width="4" stroke-linejoin="round"/>
+    </svg>
+    <span class="site-title">YanxzDesign</span>
+  </div>
+  <ul>
+    <li><a href="#home" tabindex="1">Home</a></li>
+    <li><a href="#products" tabindex="2">Produk</a></li>
+    <li><a href="#about" tabindex="3">Tentang</a></li>
+    <li><a href="#contact" tabindex="4">Kontak</a></li>
+  </ul>
+</nav>
+
+<section class="hero" id="home" aria-label="Bagian pembuka">
+  <div class="overlay"></div>
+  <div class="hero-content">
+    <h1>Jasa Design Vektor dan Website</h1>
+    <p>Membuat Vektor,Website, dan sebuah Video jj atau yang lain.</p>
+    <button class="btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'});">Hubungi Sekarang</button>
+  </div>
+</section>
+
+<section id="products" aria-label="Produk layanan kami">
+  <h2>Produk Kami</h2>
+  <div class="products-grid">
+    <article class="product-card" tabindex="0">
+      <h3>Paket Vektor dan julukan buss.</h3>
+      <p>Design vektor dan julukan custom hasil 100% bagus</p>
+      <div class="price">Rp15.000</div>
+      <button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'});">Pesan Sekarang</button>
+    </article>
+    <article class="product-card" tabindex="0">
+      <h3>Paket Editing Video</h3>
+      <p>Editing video sepanjang 19 detik lengkap dengan efek visual dan koreksi warna intensif.</p>
+      <div class="price">Rp10.000</div>
+      <button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'});">Pesan Sekarang</button>
+    </article>
+    <article class="product-card" tabindex="0">
+      <h3>Paket Design Website</h3>
+      <p>Buat Website anda sendiri,order disini jika anda ingin membuat sebuah website yang bagus.</p>
+      <div class="price">Rp450.000</div>
+      <button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'});">Pesan Sekarang</button>
+    </article>
+  </div>
+</section>
+
+<section id="about" aria-label="Tentang kami">
+  <h2>Tentang Kami</h2>
+  <p class="lead">Kami adalah tim editor profesional dengan pengalaman lebih dari 6 tahun yang berdedikasi untuk menghasilkan karya yang memuaskan klien. Kami percaya setiap story layak mendapatkan sentuhan sempurna.</p>
+</section>
+
+<section id="contact" aria-label="Kontak kami">
+  <h2>Hubungi Kami</h2>
+  <p class="lead">Untuk pertanyaan, konsultasi, atau penawaran khusus, jangan ragu menghubungi kami melalui email atau telepon di bawah ini.</p>
+  <div class="contact-info" aria-live="polite">
+    <p>Email: <a href="mailto:zianalvyansyah518@gmail.com">zianalvyansyah518@gmail.com</a></p>
+    <p>Telepon: <a href="tel:+6285716506066">+62 857 1650 6066</a></p>
+  </div>
+</section>
+
+<script>
+  // Intersection Observer for fade-in animation
+  document.addEventListener('DOMContentLoaded', () => {
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    }
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    const sections = document.querySelectorAll('section');
+    sections.forEach(section => {
+      observer.observe(section);
+    });
+  })
+</script>
+
+</body>
+</html>
+
